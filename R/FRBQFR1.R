@@ -23,12 +23,15 @@
 #' @examples
 #' frbqfr1_model (frq, gas)
 frbqfr1_model <- function (frq=p,gas=p1){
+  source("functions.R")
+  load("~/Documents/Research/FR/package/EEXFR/.RData", verbose = F)
   p1 <- tecA2(p1,"gas")
   p <- tecA2(p,"frq")
-  p <- left_join(p,p1,by="Day")
-  p <- tail(p,30)
-  load("R/sysdata.rda",verbose = F)
-  p$R23 <- predict(model23,p)
+  p <- dplyr::left_join(p,p1,by="Day")
+  p <- tail(p,10)
+
+
+  p$R23 <- stats::predict(model23,p)
 
   if (tail(p$R23,1)==1) {
     print("EEXBFRQ1 will close higher the next trading day")

@@ -18,6 +18,7 @@
 #' @import lubridate
 #' @import ranger
 #' @import TTR
+#' @importFrom magrittr "%>%"
 #'
 #' @examples
 #' frbqfr1_model (frq, gas)

@@ -16,7 +16,7 @@ sh_roc <-  function (p) {
 # RSI ---------------------------------------------------------------------
 
 sh_rsi = function (p) {
-  m=RSI (p)
+  m=TTR::RSI (p)
   m$sig_rsi=ifelse(m$EMA >= 65 | m$EMA < 30, 1, 0)
   m=m[,-1]
   return(m)
@@ -26,7 +26,7 @@ sh_rsi = function (p) {
 # MACD --------------------------------------------------------------------
 
 sh_macd = function (p) {
-  m = MACD (p)
+  m = TTR::MACD (p)
   m$sig_macd= ifelse ( m$macd > m$signal, 1,0 )
   m=m[,-(1:2)]
   return (m)
@@ -40,7 +40,7 @@ sh_aroon = function (p) {
 
   # Up (down) trends are indicated when the aroonUp(Dn) is between 70 and 100. Strong trends are
   # indicated when when the aroonUp(Dn) is above 70 while the aroonDn(Up) is below 30.
-  m = aroon(p)
+  m = TTR::aroon(p)
 
   m$sig_aroon_trend_up = ifelse ( m$aroonUp> 70 & m$aroonUp<100, 1,0 )
   m$sig_aroon_trend_dn = ifelse ( m$aroonDn> 70 & m$aroonDn<100, 1,0 )
@@ -60,7 +60,7 @@ sh_tdi = function (p) {
   #buy if the TDI and the direction indicator are positive, and
   #sell if the TDI is positive while the direction indicator is negative.
 
-  m = TDI (p)
+  m = TTR::TDI (p)
   m$sig_tdi_buy = ifelse ( m$tdi > 0 & m$di > 0, 1,0 )
   m$sig_tdi_sell = ifelse ( m$tdi > 0 & m$di < 0, 1,0 )
   m=m[,-(1:2)]
@@ -75,7 +75,7 @@ sh_trix = function (p){
 
   # Buy/sell signals are generated when the TRIX crosses above/below the signal line
   # and is also above/below zero.
-  m=TRIX(p)
+  m=TTR::TRIX(p)
 
   m$sig_trix_buy = ifelse ( m$TRIX > m$signal & m$TRIX > 0, 1,0)
   m$sig_trix_sell = ifelse ( m$TRIX < m$signal & m$TRIX < 0, 1,0)
@@ -90,7 +90,7 @@ sh_kst = function (p){
 
   # The KST indicates bullish/bearish momentum as it crosses above/below its moving average.
   # Because the KST tends to lead price action, look for trend confirmation in the price.
-  m = KST (p)
+  m = TTR::KST (p)
   m$sig_kst = ifelse ( m$kst > m$signal, 1,0)
   m=m[,-(1:2)]
   return(m)

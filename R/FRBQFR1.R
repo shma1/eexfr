@@ -22,13 +22,13 @@
 #'
 #' @examples
 #' frbqfr1_model (frq, gas)
-frbqfr1_model <- function (frq=p,gas=p1){
+frbqfr1_model <- function (frq,gas){
   source("functions.R")
-  load("~/Documents/Research/FR/package/EEXFR/.RData", verbose = T)
-  p1 <- tecA2(p1,"gas")
-  p <- tecA2(p,"frq")
-  p <- dplyr::left_join(p,p1,by="Day")
-  p <- tail(p,10)
+  load("~/Documents/Research/FR/package/EEXFR/.RData", verbose = F)
+  gas <- tecA2(gas,"gas")
+  frq <- tecA2(frq,"frq")
+  p <- dplyr::left_join(frq,gas,by="Day")
+  p <- tail(p,1)
 
 
   p$R23 <- stats::predict(model23,p)

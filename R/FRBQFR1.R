@@ -24,7 +24,7 @@
 #' frbqfr1_model (frq, gas)
 frbqfr1_model <- function (frq=p,gas=p1){
   source("functions.R")
-  load("~/Documents/Research/FR/package/EEXFR/.RData", verbose = F)
+  load("~/Documents/Research/FR/package/EEXFR/.RData", verbose = T)
   p1 <- tecA2(p1,"gas")
   p <- tecA2(p,"frq")
   p <- dplyr::left_join(p,p1,by="Day")

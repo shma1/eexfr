@@ -4,7 +4,7 @@
 \alias{frbqfr1_model}
 \title{French base quarter front month trade signal}
 \usage{
-frbqfr1_model(frq = p, gas = p1)
+frbqfr1_model(frq, gas)
 }
 \arguments{
 \item{frq}{an xts object. this should be the day closing prices of the front

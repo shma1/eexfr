@@ -114,7 +114,7 @@ tecA2  <-  function (p, c_name) {
              #sh_kst(p)
   )
 
-  p <- data.frame(Day = index(p),
+  p <- data.frame(Day = zoo::index(p),
                   p,
                   row.names = NULL)
 
